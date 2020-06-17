@@ -1,8 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const async = require('async');
 
+function getID(e) {
+    const searchedIdObject = e;
+    const urlID = (req.params.id);
+    if (searchedIdObject.id == urlID ) {
+        return true;
+    }
+};
 
 router.route('/testimonials/random').get((req, res) => {
     const randomObject = db.testimonials[Math.floor(Math.random() * db.testimonials.length - 1)];
@@ -14,15 +20,6 @@ router.route('/testimonials').get((req, res) => {
 });
 
 router.route('/testimonials/:id').get(async(req, res) => {
-
-    function getID(e) {
-        const searchedIdObject = e;
-        const urlID = (req.params.id);
-        if (searchedIdObject.id == urlID ) {
-                return true;
-            }
-    };
-    
     const authorData = await db.testimonials.find(getID);
     res.json(authorData);
 });
@@ -38,16 +35,7 @@ router.route('/testimonials').post((req, res) => {
 
 router.route('/testimonials/:id').put(async (req, res) => {
     const {author, text} = req.body;
-
-    function getIdObject(e) {
-        const searchedObject = e;
-        const urlid = (req.params.id);
-        if (searchedObject.id == urlid ) {
-                return true;
-            }
-    };
-    
-    const updatedObject = await db.testimonials.find(getIdObject);
+    const updatedObject = await db.testimonials.find(getID);
     updatedObject.author = author;
     updatedObject.text = text;
 
@@ -55,16 +43,7 @@ router.route('/testimonials/:id').put(async (req, res) => {
 });
 
 router.route('/testimonials/:id').delete(async (req, res) => {
-
-    function getIdObject(e) {
-        const searchedObject = e;
-        const urlid = (req.params.id);
-        if (searchedObject.id == urlid ) {
-                return true;
-            }
-    };
-    
-    const deleteObject = await db.testimonials.find(getIdObject);
+    const deleteObject = await db.testimonials.find(getID);
     db.testimonials.splice(deleteObject);
     res.json({message: 'OK'});
 });
