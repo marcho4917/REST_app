@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Row, Col, Alert, Progress } from
 
 import './OrderTicketForm.scss';
 import SeatChooser from './../SeatChooser/SeatChooserContainer';
-import { loadSeats, loadSeatsRequest } from '../../../redux/seatsRedux';
+import { loadSeats } from '../../../redux/seatsRedux';
 
 class OrderTicketForm extends React.Component {
 
@@ -104,7 +104,7 @@ class OrderTicketForm extends React.Component {
             </FormGroup>
             <FormGroup check>
               <Label check>
-              <Input required type="checkbox" /> I agree with Terms and conditions Privacy Policy.
+              <Input required type="checkbox" /> I agree with <a href="#">Terms and conditions</a> and <a href="#">Privacy Policy</a>.
               </Label>
             </FormGroup>
             <Button color="primary" className="mt-3">Submit</Button>
