@@ -30,8 +30,7 @@ router.route('/seats').post((req, res) => {
         }
     };
 
-    const newSeat = new Seat({id: objectID, day: day, seat: seat, client: client, email: email  });
-    
+    const newSeat = {id: objectID, day: day, seat: seat, client: client, email: email  };
     if(db.seats.some(alreadyExist)){
         res.status(404).json({ message: "The slot is already taken..." });
     } else {
