@@ -25,14 +25,14 @@ router.route('/seats').post((req, res) => {
     const objectID = Math.floor((Math.random() * 100) + 1);
 
     function alreadyExist(e) {
-        if(db.seats.day == req.params.day && db.seats.seat == req.params.seat) {
+        if(e.seat === req.params.seat && e.day === req.params.day) {
             return true;
         }
     };
 
     const newSeat = {id: objectID, day: day, seat: seat, client: client, email: email  };
     if(db.seats.some(alreadyExist)){
-        res.status(404).json({ message: "The slot is already taken..." });
+        res.status(409).json({ message: "The slot is already taken..." });
     } else {
         db.seats.push(newSeat);
         res.json({message: 'OK'});
