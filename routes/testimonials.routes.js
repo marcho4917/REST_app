@@ -2,12 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-function getID(e) {
-    const searchedIdObject = e;
-    const urlID = (req.params.id);
-    if (searchedIdObject.id == urlID ) {
-        return true;
-    }
+const getID = (seat) => {
+    const urlID = req.params.id;
+    urlID === seat.id;
 };
 
 router.route('/testimonials/random').get((req, res) => {
