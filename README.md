@@ -1,1 +1,1 @@
-https://new-wave-concert.herokuapp.com/
+https://waves-concerts.herokuapp.com/
