@@ -31,7 +31,7 @@ class SeatChooser extends React.Component {
 
   freeSeats = () => {
     const { seats, chosenDay } = this.props;
-
+    
     const bookedSeats = seats.filter((seat) => seat.day === chosenDay);
     let seatsLeft = 50 - bookedSeats.length;
     return seatsLeft;
