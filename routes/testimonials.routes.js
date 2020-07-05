@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const TestimonialController = require('../controllers/testimonials.controller');
 
-const getID = (seat) => {
-    const urlID = req.params.id;
-    urlID === seat.id;
-};
+router.get('/testimonials/random', TestimonialController.getRandomTestimonial);
+router.get('/testimonials', TestimonialController.getAllTestimonials);
+router.get('/concerts/:id', TestimonialController.getTestimonialById);
+router.post('/concerts', TestimonialController.addTestimonial);
+router.put('/concerts/:id', TestimonialController.updateTestimonial);
+router.delete('/concerts/:id', TestimonialController.deleteTestimonial);
+
+module.exports = router;
 
 router.route('/testimonials/random').get((req, res) => {
     const randomObject = db.testimonials[Math.floor(Math.random() * db.testimonials.length - 1)];
@@ -44,5 +48,3 @@ router.route('/testimonials/:id').delete(async (req, res) => {
     db.testimonials.splice(deleteObject);
     res.json({message: 'OK'});
 });
-
-module.exports = router;

@@ -74,6 +74,8 @@ export default function reducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case LOAD_SEATS: 
       return { ...statePart, data: [...action.payload] };
+    case ADD_SEAT: 
+      return { ...statePart, data: [...statePart.data, action.payload] }
     case START_REQUEST:
       return { ...statePart, requests: {...statePart.requests, [action.payload.name]: { pending: true, error: null, success: false }} };
     case END_REQUEST:
