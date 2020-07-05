@@ -33,8 +33,8 @@ exports.updateSeat = async (req,res) => {
     const { day, seat, client, email } = req.body;
 
     try {
-        const seat = await Seat.findById(req.params.id);
-        if(seat) {
+        const choosenSeat = await Seat.findById(req.params.id);
+        if(choosenSeat) {
             await Seat.updateOne({_id: req.params.id}, {$set: {day: day, seat: seat, client:client, email: email}});
             res.json({message: 'OK'});
         } else res.stauts(404).json({message: 'Not found'});
