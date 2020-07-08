@@ -35,11 +35,11 @@ const io = socket(server);
 
 module.exports = server;
 
-io.on('connection', (socket) => {
+io.on('connection', () => {
   console.log('New socket!');
 });
 
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect('mongodb+srv://concert_attendant:concert_attendant@cluster0.f8s1p.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true  });
 const db = mongoose.connection;
 
 db.once('open', () => {
