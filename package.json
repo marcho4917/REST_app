@@ -13,6 +13,6 @@
   "scripts": {
     "start": "nodemon server.js",
     "build": "cd client && yarn install && yarn build",
-    "test": "mocha --watch \"./{,!(node_modules)/**/}*.test.js\""
+    "test": "mocha \"./{,!(node_modules|client)/**/}*.test.js\""
   }
 }
