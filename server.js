@@ -7,7 +7,9 @@ const concertsRoutes = require('./routes/concerts.routes');
 const seatsRoutes = require('./routes/seats.routes');
 const mongoose = require('mongoose');
 const app = express();
+const helmet = require('helmet');
 
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,7 +42,7 @@ io.on('connection', () => {
   console.log('New socket!');
 });
 
-mongoose.connect('mongodb+srv://concert_attendant:concert_attendant@cluster0.f8s1p.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect('mongodb+srv://concert_attendant:process.env.CONCERT_PASS@cluster0.f8s1p.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true  });
 const db = mongoose.connection;
 
 db.once('open', () => {
