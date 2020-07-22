@@ -42,7 +42,7 @@ io.on('connection', () => {
   console.log('New socket!');
 });
 
-mongoose.connect('mongodb+srv://concert_attendant:process.env.CONCERT_PASS@cluster0.f8s1p.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect('mongodb+srv://${process.env.CONCERT_USER}:${process.env.CONCERT_PASS}@cluster0.f8s1p.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true  });
 const db = mongoose.connection;
 
 db.once('open', () => {
